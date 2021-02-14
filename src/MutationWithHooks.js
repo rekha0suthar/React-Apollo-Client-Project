@@ -17,7 +17,7 @@ export function MutationWithHook() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loginUser, { data, error, loading }] = useMutation(LOGIN_MUTATION);
+  const [loginUser, { data, error }] = useMutation(LOGIN_MUTATION);
 
   if (error) {
     alert("Error Logging In User");
@@ -26,7 +26,7 @@ export function MutationWithHook() {
   if (data) {
     alert("Successfully Logged In");
   }
-
+  console.log(data);
   return (
     <form
       id="signinForm"
@@ -37,7 +37,8 @@ export function MutationWithHook() {
       }}
     >
       <p className="h4 mb-4 f-1">Sign In</p>
-
+      Email:
+      <br />
       <input
         title="Email"
         id="email"
@@ -47,6 +48,10 @@ export function MutationWithHook() {
         type="email"
         required
       />
+      <br />
+      <br />
+      Password:
+      <br />
       <input
         title="Password"
         id="password"
@@ -56,9 +61,14 @@ export function MutationWithHook() {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-
+      <br />
+      <br />
       <div className="form-group my-4">
-        <button className="btn btn-block" type="submit">
+        <button
+          className="btn btn-block"
+          type="submit"
+          onSubmit={() => alert("Login succesful")}
+        >
           Sign In
         </button>
       </div>
